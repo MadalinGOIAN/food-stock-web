@@ -17,7 +17,7 @@ function Login() {
             >
                 <img className="mx-auto mb-6" src="/food-stock-text-logo.svg" alt="Food Stock" />
 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="email" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Email
                 </label>
 
@@ -31,7 +31,7 @@ function Login() {
                         focus:ring-albescent-white-200"
                 />
 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="password" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Password
                 </label>
 
@@ -48,7 +48,7 @@ function Login() {
                 <button
                     type="submit"
                     className="w-full rounded-lg bg-wasabi-700 py-2 font-medium text-white transition-colors
-                        hover:bg-wasabi-900 focus:ring-2 focus:ring-albescent-white-400"
+                        hover:bg-wasabi-900 outline-none focus:ring-2 focus:ring-wasabi-500"
                 >
                     Log in
                 </button>
@@ -57,7 +57,8 @@ function Login() {
                     Don't have an account yet?{" "}
                     <Link
                         to="/signup"
-                        className="font-medium text-wasabi-700 hover:text-wasabi-900"
+                        className="font-medium text-wasabi-700 hover:text-wasabi-900 outline-none focus:ring-2
+                            focus:ring-wasabi-500 rounded-sm"
                     >
                         Sign up
                     </Link>

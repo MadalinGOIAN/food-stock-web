@@ -16,7 +16,7 @@ function Signup() {
             >
                 <img className="mx-auto mb-6" src="/food-stock-text-logo.svg" alt="Food Stock" />
 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="email" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Email
                 </label>
 
@@ -30,7 +30,7 @@ function Signup() {
                         focus:ring-albescent-white-200"
                 />
                 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="name" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Full name
                 </label>
 
@@ -44,7 +44,7 @@ function Signup() {
                         focus:ring-albescent-white-200"
                 />
 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="password" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Password
                 </label>
 
@@ -58,12 +58,12 @@ function Signup() {
                         focus:ring-albescent-white-200"
                 />
                 
-                <label className="mb-1 block text-sm font-bold text-albescent-white-950">
+                <label htmlFor="confirm-password" className="mb-1 block text-sm font-bold text-albescent-white-950">
                     Confirm password
                 </label>
 
                 <input
-                    id="password"
+                    id="confirm-password"
                     type="password"
                     autoComplete="new-password"
                     required
@@ -75,7 +75,7 @@ function Signup() {
                 <button
                     type="submit"
                     className="w-full rounded-lg bg-wasabi-700 py-2 font-medium text-white transition-colors
-                        hover:bg-wasabi-900 focus:ring-2 focus:ring-albescent-white-400"
+                        hover:bg-wasabi-900 outline-none focus:ring-2 focus:ring-wasabi-500"
                 >
                     Sign up
                 </button>
@@ -84,7 +84,8 @@ function Signup() {
                     Already have an account?{" "}
                     <Link
                         to="/login"
-                        className="font-medium text-wasabi-700 hover:text-wasabi-900"
+                        className="font-medium text-wasabi-700 hover:text-wasabi-900 outline-none focus:ring-2
+                            focus:ring-wasabi-500 rounded-sm"
                     >
                         Log in
                     </Link>

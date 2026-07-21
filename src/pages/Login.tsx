@@ -52,12 +52,12 @@ function Login() {
     }
 
     return (
-        <div className="flex min-h-screen items-center justify-center p-2">
+        <div className="flex min-h-dvh items-center justify-center p-2">
             <form
                 onSubmit={loginForm.handleSubmit(handleLogin)}
                 className="w-full max-w-sm rounded-xl p-8 bg-card border border-border"
             >            
-                <img className="mx-auto mb-6" src="/food-stock-text-logo.svg" alt="Food Stock" />
+                <img className="mx-auto mb-6 h-12 w-auto" src="/food-stock-text-logo.svg" alt="Food Stock" />
 
                 <FieldSet>
                     <FieldGroup>

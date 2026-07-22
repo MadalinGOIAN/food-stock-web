@@ -1,23 +1,32 @@
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/hooks/useAuth";
+import { logout } from "@/services/auth";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 function Home() {
     const navigate = useNavigate();
+    const { setStatus } = useAuth()
 
-    function handleLogout() {
-        navigate("/login")
+    async function handleLogout() {
+        await logout()
+            .then(() => {
+                setStatus("unauthenticated")
+                navigate("/login", { replace: true })
+            })
+            .catch((e) => toast.error(e.message))
     }
 
     return (
         <>
             <h1>Placeholder home page, only log out for now</h1>
-            <button
+            <Button
                 type="button"
                 onClick={handleLogout}
-                className="w-lg rounded-lg bg-wasabi-700 py-2 font-medium text-white transition-colors
-                    hover:bg-wasabi-900 focus:ring-2 focus:ring-albescent-white-400"
+                className="w-lg"
             >
                 Log out
-            </button>
+            </Button>
         </>
     )
 }

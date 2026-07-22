@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { useAuth } from "@/hooks/useAuth"
 
 const loginFormSchema = z.object({
     email: z
@@ -33,6 +34,7 @@ const loginFormSchema = z.object({
 
 function Login() {
     const navigate = useNavigate()
+    const { setStatus } = useAuth()
     const loginForm = useForm<z.infer<typeof loginFormSchema>>({
         resolver: zodResolver(loginFormSchema),
         defaultValues: {
@@ -43,7 +45,10 @@ function Login() {
 
     async function handleLogin(credentials: z.infer<typeof loginFormSchema>) {
         await login(credentials)
-            .then(() => navigate("/", { replace: true }))
+            .then(() => {
+                setStatus("authenticated")
+                navigate("/", { replace: true })
+            })
             .catch((e) => { 
                 loginForm.setError("root", {
                     message: e instanceof AuthError ? e.message : "Login failed"

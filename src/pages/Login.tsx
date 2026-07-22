@@ -1,59 +1,142 @@
-import type React from "react"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router"
+import z from "zod"
+import { AuthError, login } from "../services/auth"
+import { 
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle
+} from "@/components/ui/dialog"
+import { CircleAlert } from "lucide-react"
+import {
+    Field,
+    FieldError,
+    FieldGroup,
+    FieldLabel,
+    FieldSet
+} from "@/components/ui/field"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { useAuth } from "@/hooks/useAuth"
+
+const loginFormSchema = z.object({
+    email: z
+        .string()
+        .min(1, { error: "Email cannot be empty" })
+        .pipe(z.email()),
+    password: z
+        .string()
+        .min(1, { error: "Password cannot be empty" })
+})
 
 function Login() {
     const navigate = useNavigate()
+    const { setStatus } = useAuth()
+    const loginForm = useForm<z.infer<typeof loginFormSchema>>({
+        resolver: zodResolver(loginFormSchema),
+        defaultValues: {
+            email: "",
+            password: ""
+        }
+    })
 
-    function handleLogin(e: React.SubmitEvent<HTMLFormElement>) {
-        e.preventDefault()
-        navigate("/", { replace: true })
+    async function handleLogin(credentials: z.infer<typeof loginFormSchema>) {
+        await login(credentials)
+            .then(() => {
+                setStatus("authenticated")
+                navigate("/", { replace: true })
+            })
+            .catch((e) => { 
+                loginForm.setError("root", {
+                    message: e instanceof AuthError ? e.message : "Login failed"
+                })
+            })
     }
 
     return (
-        <div className="flex min-h-screen items-center justify-center p-4">
-            <form 
-                onSubmit={handleLogin}
-                className="w-full max-w-sm rounded-xl bg-albescent-white-50 p-8 border border-albescent-white-200"
-            >
-                <img className="mx-auto mb-6" src="/food-stock-text-logo.svg" alt="Food Stock" />
+        <div className="flex min-h-dvh items-center justify-center p-2">
+            <form
+                onSubmit={loginForm.handleSubmit(handleLogin)}
+                className="w-full max-w-sm rounded-xl p-8 bg-card border border-border"
+            >            
+                <img className="mx-auto mb-6 h-12 w-auto" src="/food-stock-text-logo.svg" alt="Food Stock" />
 
-                <label htmlFor="email" className="mb-1 block text-sm font-bold text-albescent-white-950">
-                    Email
-                </label>
+                <FieldSet>
+                    <FieldGroup>
+                        <Field>
+                            <FieldLabel 
+                                htmlFor="email"
+                                className="block text-sm font-bold text-foreground"
+                            >
+                                Email
+                            </FieldLabel>
+                            <Input
+                                id="email"
+                                type="email"
+                                autoComplete="email"
+                                {...loginForm.register("email")}
+                                aria-invalid={!!loginForm.formState.errors.email}
+                            />
+                            {loginForm.formState.errors.email && (
+                                <FieldError>
+                                    {loginForm.formState.errors.email.message}
+                                </FieldError>
+                            )}
+                        </Field>
 
-                <input
-                    id="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="mb-4 w-full rounded-lg border border-albescent-white-200 bg-white px-3 py-2
-                        text-albescent-white-950 outline-none focus:border-albescent-white-200 focus:ring-2
-                        focus:ring-albescent-white-200"
-                />
+                        <Field>
+                            <FieldLabel 
+                                htmlFor="password"
+                                className="block text-sm font-bold text-albescent-white-950"
+                            >
+                                Password
+                            </FieldLabel>
+                            <Input 
+                                id="password"
+                                type="password"
+                                autoComplete="current-password"
+                                {...loginForm.register("password")}
+                                aria-invalid={!!loginForm.formState.errors.password}
+                            />
+                            {loginForm.formState.errors.password && (
+                                <FieldError>
+                                    {loginForm.formState.errors.password.message}
+                                </FieldError>
+                            )}
+                        </Field>
+                    </FieldGroup>
+                </FieldSet>
 
-                <label htmlFor="password" className="mb-1 block text-sm font-bold text-albescent-white-950">
-                    Password
-                </label>
+                <Dialog 
+                    open={!!loginForm.formState.errors.root}
+                    onOpenChange={() => loginForm.clearErrors("root")}
+                >
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2">
+                                <CircleAlert />
+                                Login failed
+                            </DialogTitle>
+                            <DialogDescription>
+                                {loginForm.formState.errors.root?.message}
+                            </DialogDescription>
+                        </DialogHeader>
+                    </DialogContent>
+                </Dialog>
 
-                <input
-                    id="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="mb-6 w-full rounded-lg border border-albescent-white-200 bg-white px-3 py-2
-                        text-albescent-white-950 outline-none focus:border-albescent-white-200 focus:ring-2
-                        focus:ring-albescent-white-200"
-                />
-
-                <button
+                <Button
                     type="submit"
-                    className="w-full rounded-lg bg-wasabi-700 py-2 font-medium text-white transition-colors
-                        hover:bg-wasabi-900 outline-none focus:ring-2 focus:ring-wasabi-500"
+                    size={"lg"}
+                    disabled={loginForm.formState.isSubmitting}
+                    className="mt-6 w-full"
                 >
                     Log in
-                </button>
+                </Button>
 
-                <p className="font-normal mt-12 text-center text-sm text-albescent-white-500">
+                <p className="font-normal mt-12 text-center text-sm text-muted-foreground">
                     Don't have an account yet?{" "}
                     <Link
                         to="/signup"

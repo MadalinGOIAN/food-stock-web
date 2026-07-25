@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
+import { Logo } from "@/components/logo"
 import { useAuth } from "@/hooks/useAuth"
 
 const loginFormSchema = z.object({
@@ -62,7 +63,7 @@ function Login() {
                 onSubmit={loginForm.handleSubmit(handleLogin)}
                 className="w-full max-w-sm rounded-xl p-8 bg-card border border-border"
             >            
-                <img className="mx-auto mb-6 h-12 w-auto" src="/food-stock-text-logo.svg" alt="Food Stock" />
+                <Logo className="mx-auto mb-6 h-12 w-auto" />
 
                 <FieldSet>
                     <FieldGroup>
@@ -90,7 +91,7 @@ function Login() {
                         <Field>
                             <FieldLabel 
                                 htmlFor="password"
-                                className="block text-sm font-bold text-albescent-white-950"
+                                className="block text-sm font-bold text-foreground"
                             >
                                 Password
                             </FieldLabel>
@@ -140,8 +141,8 @@ function Login() {
                     Don't have an account yet?{" "}
                     <Link
                         to="/signup"
-                        className="font-medium text-wasabi-700 hover:text-wasabi-900 outline-none focus:ring-2
-                            focus:ring-wasabi-500 rounded-sm"
+                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-300
+                            outline-none focus:ring-2 focus:ring-sidebar-ring rounded-sm"
                     >
                         Sign up
                     </Link>

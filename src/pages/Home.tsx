@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { logout } from "@/services/auth";
@@ -27,6 +28,7 @@ function Home() {
             >
                 Log out
             </Button>
+            <ModeToggle />
         </>
     )
 }

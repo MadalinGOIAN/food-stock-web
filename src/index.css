@@ -43,6 +43,8 @@
     --color-brown-rust-800: #833929;
     --color-brown-rust-900: #6a3124;
     --color-brown-rust-950: #391711;
+
+    --color-white: #ffffff;
 }
 
 @layer base {
@@ -59,16 +61,20 @@
 
 input:-webkit-autofill,
 input:autofill {
-    box-shadow: inset 0 0 0 1000px white;
-    -webkit-text-fill-color: var(--color-albescent-white-950);
-    caret-color: var(--color-albescent-white-950);
+    -webkit-text-fill-color: var(--foreground);
+    caret-color: var(--foreground);
+    -webkit-box-shadow: inset 0 0 0 1000px var(--autofill-bg);
+    box-shadow: inset 0 0 0 1000px var(--autofill-bg);
 }
 
 input:-webkit-autofill:focus,
 input:autofill:focus {
+    -webkit-box-shadow:
+        inset 0 0 0 1000px var(--autofill-bg),
+        0 0 0 2px var(--ring);
     box-shadow:
-        inset 0 0 0 1000px white,
-        0 0 0 2px var(--color-albescent-white-200);
+        inset 0 0 0 1000px var(--autofill-bg),
+        0 0 0 2px var(--ring);
 }
 
 @theme inline {
@@ -146,6 +152,7 @@ input:autofill:focus {
     --sidebar-accent-foreground: var(--color-wasabi-900);
     --sidebar-border: var(--color-albescent-white-200);
     --sidebar-ring: var(--color-wasabi-500);
+    --autofill-bg: var(--color-white);
 }
 
 .dark {
@@ -159,13 +166,13 @@ input:autofill:focus {
     --primary-foreground: var(--color-wasabi-950);
     --secondary: var(--color-albescent-white-900);
     --secondary-foreground: var(--color-albescent-white-100);
-    --muted: var(--color-albescent-white-900);
+    --muted: var(--color-albescent-white-800);
     --muted-foreground: var(--color-albescent-white-300);
-    --accent: var(--color-wasabi-900);
-    --accent-foreground: var(--color-wasabi-100);
+    --accent: var(--color-wasabi-100);
+    --accent-foreground: var(--color-wasabi-900);
     --destructive: var(--color-brown-rust-400);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
+    --border: var(--color-albescent-white-800);
+    --input: var(--color-albescent-white-800);
     --ring: var(--color-albescent-white-300);
     --chart-1: var(--color-wasabi-400);
     --chart-2: var(--color-brown-rust-400);
@@ -178,6 +185,7 @@ input:autofill:focus {
     --sidebar-primary-foreground: var(--color-wasabi-950);
     --sidebar-accent: var(--color-wasabi-900);
     --sidebar-accent-foreground: var(--color-wasabi-100);
-    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-border: var(--color-albescent-white-800);
     --sidebar-ring: var(--color-wasabi-500);
+    --autofill-bg: var(--color-albescent-white-950);
 }

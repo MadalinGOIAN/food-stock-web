@@ -1,3 +1,4 @@
+import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Field, FieldError, FieldGroup, FieldLabel, FieldSet } from "@/components/ui/field"
@@ -73,7 +74,7 @@ function Signup() {
                 onSubmit={signupForm.handleSubmit(handleSignup)} 
                 className="w-full max-w-sm rounded-xl p-8 bg-card border border-border"
             >
-                <img className="mx-auto mb-6 h-12 w-auto" src="/food-stock-text-logo.svg" alt="Food Stock" />
+                <Logo className="mx-auto mb-6 h-12 w-auto" />
 
                 <FieldSet>
                     <FieldGroup>
@@ -193,8 +194,8 @@ function Signup() {
                     Already have an account?{" "}
                     <Link
                         to="/login"
-                        className="font-medium text-wasabi-700 hover:text-wasabi-900 outline-none focus:ring-2
-                            focus:ring-wasabi-500 rounded-sm"
+                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-300
+                            outline-none focus:ring-2 focus:ring-sidebar-ring rounded-sm"
                     >
                         Log in
                     </Link>

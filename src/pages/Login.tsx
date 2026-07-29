@@ -141,7 +141,7 @@ function Login() {
                     Don't have an account yet?{" "}
                     <Link
                         to="/signup"
-                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-300
+                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-400
                             outline-none focus:ring-2 focus:ring-sidebar-ring rounded-sm"
                     >
                         Sign up

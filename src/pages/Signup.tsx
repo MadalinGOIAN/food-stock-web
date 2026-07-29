@@ -194,7 +194,7 @@ function Signup() {
                     Already have an account?{" "}
                     <Link
                         to="/login"
-                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-300
+                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-400
                             outline-none focus:ring-2 focus:ring-sidebar-ring rounded-sm"
                     >
                         Log in

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/Logo"
 import { useAuth } from "@/hooks/useAuth"
 
 const loginFormSchema = z.object({

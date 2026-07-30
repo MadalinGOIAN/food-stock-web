@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router"
 import { useAuth } from "@/hooks/useAuth"
 import Loading from "./Loading"
+import Navbar from "./Navbar"
 
 function RequireAuth() {
     const { status } = useAuth()
@@ -13,7 +14,12 @@ function RequireAuth() {
         return <Navigate to="/login" replace />
     }
 
-    return <Outlet />
+    return (
+        <>
+            <Navbar />
+            <Outlet />
+        </>
+    )
 }
 
 export default RequireAuth

@@ -47,7 +47,7 @@ function Navbar() {
                             key={item.to}
                             to={item.to}
                             className={({ isActive }) =>
-                                `rounded-md px-3 py-2 text-sm font-semibold transition-colors
+                                `rounded-md px-3 py-2 text-sm font-semibold transition-colors select-none
                                 hover:bg-primary hover:text-card ${
                                     isActive
                                         ? "text-primary"

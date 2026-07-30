@@ -2,11 +2,14 @@ import { Route, Routes } from "react-router"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Home from "./pages/Home"
+import Household from "./pages/Household"
 import RequireAuth from "./components/RequireAuth"
 import { Toaster } from "./components/ui/sonner"
 import AuthProvider from "./context/AuthProvider"
 import RequireUnauth from "./components/RequireUnauth"
 import { ThemeProvider } from "./components/theme-provider"
+import ShoppingList from "./pages/ShoppingList"
+import Settings from "./pages/Settings"
 
 function App() {
     return (
@@ -15,6 +18,9 @@ function App() {
                 <Routes>
                     <Route element={<RequireAuth />}>
                         <Route path="/" element={<Home />} />
+                        <Route path="/household" element={<Household />} />
+                        <Route path="/shopping-list" element={<ShoppingList />} />
+                        <Route path="/settings" element={<Settings />} />
                     </Route>
                     <Route element={<RequireUnauth />}>
                         <Route path="/login" element={<Login />} />

@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Logo } from "@/components/logo"
+import { Logo } from "@/components/Logo"
 import { useAuth } from "@/hooks/useAuth"
 
 const loginFormSchema = z.object({
@@ -141,7 +141,7 @@ function Login() {
                     Don't have an account yet?{" "}
                     <Link
                         to="/signup"
-                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-300
+                        className="font-medium text-primary hover:text-wasabi-800 dark:hover:text-wasabi-400
                             outline-none focus:ring-2 focus:ring-sidebar-ring rounded-sm"
                     >
                         Sign up

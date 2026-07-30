@@ -201,3 +201,7 @@ input:autofill:focus {
     --sidebar-ring: var(--color-wasabi-500);
     --autofill-bg: var(--color-eternity-950);
 }
+
+::selection {
+    background: var(--muted);
+}
